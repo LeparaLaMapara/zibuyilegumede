@@ -106,6 +106,6 @@ export const CLIENT_LIST: Client[] = [
 export const ON_SET_IMAGES = [
   'media/others/me_1.jpg',
   'media/others/me_2.jpg',
-  'media/others/me_3.jpg',
+  // 'media/others/me_3.jpg',
   'media/others/me_4.jpg',
 ];
