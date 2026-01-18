@@ -1,9 +1,8 @@
 import React, { Suspense, lazy } from 'react';
-import { HashRouter, Routes, Route, } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import { Analytics } from '@vercel/analytics/react';  // for performance monitoring
-
 
 // Lazy loading pages for performance
 const Films = lazy(() => import('./pages/Films'));
@@ -33,6 +32,9 @@ const App: React.FC = () => {
           </Suspense>
         </main>
         <Footer />
+        
+        {/* Add Vercel Analytics here – it tracks the entire app */}
+        <Analytics />
       </div>
     </HashRouter>
   );
