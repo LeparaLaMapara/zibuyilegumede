@@ -1,21 +1,50 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Play } from 'lucide-react';
 import VideoModal from '../components/VideoModal';
 import { CLIENT_LIST, TESTIMONIALS, SOCIAL_LINKS, SHOWREEL_ID } from '../constants';
+// Import your Cloudinary utilities for the milli-second load speed
+import { getOptimizedUrl, getPlaceholderUrl } from '../utils/cloudinary';
 
 const About: React.FC = () => {
   const [showreelOpen, setShowreelOpen] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  // Define the local path for your showreel cover
+  const showreelCoverPath = "/media/others/showreel_cover.jpg";
 
   return (
-    <div className="min-h-screen pt-32 pb-20 animate-fade-in">
+    // Reduced pt-20 for mobile so the header doesn't push the showreel off-screen
+    <div className="min-h-screen pt-20 md:pt-32 pb-20 animate-fade-in">
       
-            {/* Showreel Section */}
+      {/* Showreel Section: Fixed height for mobile to prevent overflow */}
       <section 
-        className={`relative w-full h-[50vh] md:h-[60vh] bg-gray-100 flex items-center justify-center overflow-hidden mb-24 group ${SHOWREEL_ID ? 'cursor-pointer' : 'cursor-default'}`}
+        className={`relative w-full h-64 sm:h-80 md:h-[60vh] bg-black flex items-center justify-center overflow-hidden mb-24 group ${
+          SHOWREEL_ID ? 'cursor-pointer' : 'cursor-default'
+        }`}
         onClick={() => SHOWREEL_ID && setShowreelOpen(true)}
       >
-        <img src="../media/others/showreel_cover.jpg" alt="Showreel Cover" className="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-1000" />
+        {/* Placeholder (Blur) - Visible immediately */}
+        <img 
+          src={getPlaceholderUrl(showreelCoverPath)} 
+          alt=""
+          aria-hidden="true"
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
+            isLoaded ? 'opacity-0' : 'opacity-100'
+          }`} 
+        />
+        
+        {/* Optimized High-Res - Fades in over the blur */}
+        <img 
+          src={getOptimizedUrl(showreelCoverPath)} 
+          alt="Zibuyile Gumede Showreel" 
+          onLoad={() => setIsLoaded(true)}
+          className={`absolute inset-0 w-full h-full object-cover transition-all duration-1000 ease-out group-hover:scale-105 ${
+            isLoaded ? 'opacity-90' : 'opacity-0'
+          }`} 
+        />
+
         <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-500"></div>
+        
         <div className="relative z-10 flex flex-col items-center">
           <h2 className="font-serif text-4xl md:text-6xl text-white tracking-wide drop-shadow-lg mb-6">SHOW REEL</h2>
           
@@ -32,107 +61,93 @@ const About: React.FC = () => {
           )}
         </div>
       </section>
-<section className="max-w-screen-xl mx-auto px-4 md:px-8 lg:px-12 mb-24">
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24">
-    <div>
-      <h2 className="font-serif text-3xl mb-6">Biography</h2>
-      <p className="font-sans text-sm text-gray-500 leading-7 tracking-wide text-justify">
-        <strong>Zibuyile Gumede</strong> is a South African Cinematographer and the founder of{' '}
-        <a href={SOCIAL_LINKS.instagram} target="_blank" rel="noopener noreferrer" className="font-bold text-dark hover:text-gold transition-colors">
-          ABANTU PICTURES
-        </a>. Her work is defined by a balance of emotive lighting and technical precision, spanning narrative features, high-end commercials, and music videos. Driven by both academic discipline and practical innovation, she adapts her visual language to the unique requirements of every story.
-      </p>
-    </div>
-    <div className="font-sans text-sm text-gray-500 leading-7 tracking-wide text-justify">
-      <p className="mb-4">
-        Specializing in both film and digital formats, Zibuyile is an advocate for emerging technologies, including Virtual Production and AI. She believes that cinematography is the bridge between traditional craft and modern meaning, ensuring every project delivers visuals that connect across borders.
-      </p>
-      <p>
-        Through ABANTU PICTURES, she offers a collaborative approach that respects the integrity of the story while pushing creative boundaries. When not on set, she can be found exploring the outdoors or researching the evolving intersection of cinema and artificial intelligence.
-      </p>
-    </div>
-  </div>
-</section>
-      {/* Call Me Back Feature */}
+
+      {/* Biography Section */}
+      <section className="max-w-screen-xl mx-auto px-4 md:px-8 lg:px-12 mb-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24">
+          <div>
+            <h2 className="font-serif text-3xl mb-6 text-dark">Biography</h2>
+            <p className="font-sans text-sm text-gray-500 leading-7 tracking-wide text-justify">
+              <strong>Zibuyile Gumede</strong> is a South African Cinematographer and the founder of{' '}
+              <a href={SOCIAL_LINKS.instagram} target="_blank" rel="noopener noreferrer" className="font-bold text-dark hover:text-gold transition-colors">
+                ABANTU PICTURES
+              </a>. Her work is defined by a balance of emotive lighting and technical precision, spanning narrative features, high-end commercials, and music videos.
+            </p>
+          </div>
+          <div className="font-sans text-sm text-gray-500 leading-7 tracking-wide text-justify">
+            <p className="mb-4">
+              Specializing in both film and digital formats, Zibuyile is an advocate for emerging technologies, including Virtual Production and AI. She believes that cinematography is the bridge between traditional craft and modern meaning.
+            </p>
+            <p>
+              Through ABANTU PICTURES, she offers a collaborative approach that respects the integrity of the story while pushing creative boundaries.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Feature Movie Section: One Last Try */}
       <section className="bg-white py-20 mb-24 border-y border-gray-100">
          <div className="max-w-6xl mx-auto px-4">
             <h3 className="text-center font-serif text-3xl mb-12">"ONE LAST TRY"</h3>
             <div className="grid md:grid-cols-12 gap-8 items-start">
-               {/* Poster */}
                <div className="md:col-span-3">
-                  <div className="aspect-[2/3] bg-gray-200">
-                    <img src="media/others/best_movie_2.png" alt="Poster" loading="lazy" className="w-full h-full object-cover grayscale" />
+                  <div className="aspect-[2/3] bg-gray-200 overflow-hidden">
+                    <img 
+                      src="/media/others/best_movie_2.png" 
+                      alt="One Last Try Poster" 
+                      loading="lazy" 
+                      className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" 
+                    />
                   </div>
                </div>
                
-               {/* Content */}
                <div className="md:col-span-9">
                   <div className="grid grid-cols-2 gap-4 mb-6">
-                     <img src="media/others/best_movie_1.png" loading="lazy" className="w-full h-48 object-cover" alt="Still 1" />
-                     <img src="media/others/best_movie_4.png" loading="lazy" className="w-full h-48 object-cover" alt="Still 2" />
+                     <img src="/media/others/best_movie_1.png" loading="lazy" className="w-full h-48 object-cover" alt="Still 1" />
+                     <img src="/media/others/best_movie_4.png" loading="lazy" className="w-full h-48 object-cover" alt="Still 2" />
                   </div>
                   <h4 className="font-bold text-sm tracking-widest mb-2">SYNOPSIS</h4>
-                  <p className="text-sm text-gray-600 mb-6">
-                  Under a Johannesburg bridge, hope is measured in lipstick, mirrors, and one last chance.
-
-                  One Last Try is an intimate drama set beneath a bridge in Johannesburg, where two homeless women confront the possibility of change.
-                  Zandile, quiet and determined, prepares for a date shZandile steps into the city lights, leaving Gugusharp, and deeply protectivesu pports her with humour, concern, and the little she has to give. As they talk, hope and doubt intertwine, revealing the fragile courage it takes to believe in something more.
-                  With a cracked mirror and a final touch of lipstick, Zandile steps into the city lights, leaving Gugu behind holding onto the same uncertain hope that tonight might be different.                  </p>
-                  <div className="flex flex-wrap gap-4">
-                     {/* <span className="px-3 py-1 border border-gray-300 text-[10px] tracking-widest uppercase">Official Selection Sundance</span>
-                     <span className="px-3 py-1 border border-gray-300 text-[10px] tracking-widest uppercase">Best Cinematography LFF</span> */}
-                  </div>
+                  <p className="text-sm text-gray-600 mb-6 leading-relaxed">
+                    Under a Johannesburg bridge, hope is measured in lipstick, mirrors, and one last chance. One Last Try is an intimate drama where two homeless women confront the possibility of change.
+                  </p>
                </div>
             </div>
          </div>
       </section>
 
-         {/* Clients Section */}
+      {/* Clients Section */}
       <section className="max-w-screen-xl mx-auto px-4 mb-24">
         <div className="text-center mb-12">
-          <h3 className="font-sans text-xs tracking-[0.2em] uppercase text-gray-400">I've worked on projects for</h3>
+          <h3 className="font-sans text-xs tracking-[0.2em] uppercase text-gray-400">Collaborated with</h3>
         </div>
         
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {CLIENT_LIST.map((client, idx) => (
-             client.link ? (
-               <a 
-                 key={idx} 
-                 href={client.link}
-                 target="_blank" 
-                 rel="noopener noreferrer"
-                 className="group flex items-center justify-center h-32 border border-gray-100 hover:border-gold hover:bg-white transition-all duration-500 p-4 relative overflow-hidden"
-               >
-                 <span className="font-serif text-xl text-gray-400 group-hover:text-dark transition-colors text-center relative z-10">
-                   {client.name}
-                 </span>
-               </a>
-             ) : (
-               <div 
-                 key={idx} 
-                 className="group flex items-center justify-center h-32 border border-gray-100 p-4 cursor-default"
-               >
-                 <span className="font-serif text-xl text-gray-300 group-hover:text-gray-400 transition-colors text-center">
-                   {client.name}
-                 </span>
-               </div>
-             )
+             <div 
+                key={idx} 
+                className="group flex items-center justify-center h-28 border border-gray-100 hover:border-gold hover:bg-white transition-all duration-500 p-4"
+              >
+                <span className="font-serif text-lg text-gray-400 group-hover:text-dark transition-colors text-center">
+                  {client.name}
+                </span>
+             </div>
           ))}
         </div>
       </section>
 
-
-      {/* Testimonials */}
-      <section className="bg-dark text-white py-24">
+      {/* Testimonials Section */}
+      <section className="bg-black text-white py-24">
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
              {TESTIMONIALS.map((t, i) => (
-                <div key={i} className="p-6 border border-gray-800 relative">
-                   <div className="text-gold text-4xl font-serif absolute top-4 left-4">"</div>
-                   <p className="text-sm text-gray-300 mt-6 mb-6 leading-relaxed relative z-10">{t.quote}</p>
+                <div key={i} className="p-8 border border-white/10 relative">
+                   <div className="text-gold text-4xl font-serif absolute top-4 left-4 opacity-30">"</div>
+                   <p className="text-sm text-gray-400 mt-6 mb-8 leading-relaxed italic">
+                     {t.quote}
+                   </p>
                    <div>
                       <p className="text-gold text-xs font-bold tracking-widest uppercase">{t.author}</p>
-                      <p className="text-xs text-gray-500 mt-1">{t.role}</p>
+                      <p className="text-[10px] text-gray-600 mt-1 uppercase tracking-tighter">{t.role}</p>
                    </div>
                 </div>
              ))}
@@ -140,6 +155,11 @@ const About: React.FC = () => {
         </div>
       </section>
 
+      <VideoModal 
+        isOpen={showreelOpen}
+        onClose={() => setShowreelOpen(false)}
+        videoId={SHOWREEL_ID}
+      />
     </div>
   );
 };
