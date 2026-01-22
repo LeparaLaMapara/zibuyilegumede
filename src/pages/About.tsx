@@ -18,7 +18,7 @@ const About: React.FC = () => {
       
       {/* Showreel Section: Fixed height for mobile to prevent overflow */}
       <section 
-        className={`relative w-full h-64 sm:h-80 md:h-[60vh] bg-black flex items-center justify-center overflow-hidden mb-24 group ${
+        className={`relative w-full aspect-[21/9] md:aspect-[2.39/1] bg-black flex items-center justify-center overflow-hidden mb-24 group ${
           SHOWREEL_ID ? 'cursor-pointer' : 'cursor-default'
         }`}
         onClick={() => SHOWREEL_ID && setShowreelOpen(true)}

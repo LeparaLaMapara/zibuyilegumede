@@ -68,7 +68,8 @@ const VideoThumbnail: React.FC<VideoThumbnailProps> = ({
 
   return (
     <div 
-      className="group relative w-full overflow-hidden mb-6 cursor-pointer break-inside-avoid animate-slide-up"
+      className={`group relative w-full overflow-hidden mb-6 break-inside-avoid animate-slide-up 
+      video-hover-zone ${isHovered ? 'cursor-none' : 'cursor-pointer'}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={handleClick}
