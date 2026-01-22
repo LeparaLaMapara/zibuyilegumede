@@ -14,7 +14,7 @@ const About: React.FC = () => {
         className={`relative w-full h-[50vh] md:h-[60vh] bg-gray-100 flex items-center justify-center overflow-hidden mb-24 group ${SHOWREEL_ID ? 'cursor-pointer' : 'cursor-default'}`}
         onClick={() => SHOWREEL_ID && setShowreelOpen(true)}
       >
-        <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=2071&auto=format&fit=crop" alt="Showreel Cover" className="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-1000" />
+        <img src="./public/media/others/showreel cover .jpg" alt="Showreel Cover" className="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-1000" />
         <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-500"></div>
         <div className="relative z-10 flex flex-col items-center">
           <h2 className="font-serif text-4xl md:text-6xl text-white tracking-wide drop-shadow-lg mb-6">SHOW REEL</h2>
@@ -32,26 +32,27 @@ const About: React.FC = () => {
           )}
         </div>
       </section>
-
-        <section className="max-w-screen-xl mx-auto px-4 md:px-8 lg:px-12 mb-24">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24">
-          <div>
-             <h2 className="font-serif text-3xl mb-6">Biography</h2>
-             <p className="font-sans text-sm text-gray-500 leading-7 tracking-wide text-justify">
-               Zibuyile Gumede is a South African Cinematographer, visual storyteller, and the founder of <a href={SOCIAL_LINKS.instagram} target="_blank" rel="noopener noreferrer" className="font-bold text-dark hover:text-gold transition-colors">ABANTU PICTURES</a>, a production company dedicated to culturally grounded, people-centered storytelling. Her passion for cinema was sparked at a young age by trips to the local DVD rental store with her father. These formative experiences ignited a deep fascination with the art of storytelling and visual interpretation, which has since evolved into a career defined by both academic discipline and practical innovation.
-             </p>
-          </div>
-          <div className="font-sans text-sm text-gray-500 leading-7 tracking-wide text-justify">
-             <p className="mb-4">
-               With a keen eye for lighting and composition, Zibuyile strives to create images that are both emotive and technically precise. Her work spans narrative shorts, feature films, high-end commercials, and music videos. An advocate for innovation, she is experienced in both film and digital formats, as well as emerging technologies like Virtual Production. She believes that every project dictates its own visual language and enjoys the challenge of finding the perfect aesthetic for each story.
-             </p>
-             <p>
-               Through <a href={SOCIAL_LINKS.instagram} target="_blank" rel="noopener noreferrer" className="font-bold text-gray-700 hover:text-gold transition-colors">ABANTU PICTURES</a>, she operates at the intersection of craft and meaning, offering a collaborative approach that respects story and delivers visuals that connect across borders. When not on set, Zibuyile can be found exploring the outdoors or pushing creative boundaries in the modern era of AI.
-             </p>
-          </div>
-        </div>
-      </section>
-
+<section className="max-w-screen-xl mx-auto px-4 md:px-8 lg:px-12 mb-24">
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24">
+    <div>
+      <h2 className="font-serif text-3xl mb-6">Biography</h2>
+      <p className="font-sans text-sm text-gray-500 leading-7 tracking-wide text-justify">
+        <strong>Zibuyile Gumede</strong> is a South African Cinematographer and the founder of{' '}
+        <a href={SOCIAL_LINKS.instagram} target="_blank" rel="noopener noreferrer" className="font-bold text-dark hover:text-gold transition-colors">
+          ABANTU PICTURES
+        </a>. Her work is defined by a balance of emotive lighting and technical precision, spanning narrative features, high-end commercials, and music videos. Driven by both academic discipline and practical innovation, she adapts her visual language to the unique requirements of every story.
+      </p>
+    </div>
+    <div className="font-sans text-sm text-gray-500 leading-7 tracking-wide text-justify">
+      <p className="mb-4">
+        Specializing in both film and digital formats, Zibuyile is an advocate for emerging technologies, including Virtual Production and AI. She believes that cinematography is the bridge between traditional craft and modern meaning, ensuring every project delivers visuals that connect across borders.
+      </p>
+      <p>
+        Through ABANTU PICTURES, she offers a collaborative approach that respects the integrity of the story while pushing creative boundaries. When not on set, she can be found exploring the outdoors or researching the evolving intersection of cinema and artificial intelligence.
+      </p>
+    </div>
+  </div>
+</section>
       {/* Call Me Back Feature */}
       <section className="bg-white py-20 mb-24 border-y border-gray-100">
          <div className="max-w-6xl mx-auto px-4">

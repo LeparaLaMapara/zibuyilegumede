@@ -9,6 +9,8 @@ const Contact: React.FC = () => {
         {/* Contact Info Header */}
         <div className="text-center mb-20">
           <h2 className="font-serif text-4xl md:text-5xl mb-8 text-dark">Contact.</h2>
+
+          
           <div className="space-y-3 font-sans text-sm md:text-base tracking-wide text-dark">
             <a href={`mailto:${SOCIAL_LINKS.email}`} className="block hover:text-gold transition-colors">
               {SOCIAL_LINKS.email}

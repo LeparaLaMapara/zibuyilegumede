@@ -2,19 +2,46 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom scrollbar */
 @layer utilities {
-  .animate-fade-in {
-    animation: fadeIn 0.8s ease-out forwards;
+  ::-webkit-scrollbar {
+    width: 8px;
   }
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #d4af37; 
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #b5952f; 
+  }
+  
+  /* Cinematic Animations */
+  .animate-slide-up {
+    opacity: 0;
+    animation: slideUpFade 1.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  
+  .delay-100 { animation-delay: 0.1s; }
+  .delay-200 { animation-delay: 0.2s; }
+  .delay-300 { animation-delay: 0.3s; }
+  .delay-500 { animation-delay: 0.5s; }
+  .delay-700 { animation-delay: 0.7s; }
 }
 
-@keyframes fadeIn {
-  from {
+@keyframes slideUpFade {
+  0% {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(30px);
   }
-  to {
+  100% {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Base styles override */
+body {
+  -webkit-font-smoothing: antialiased;
 }
