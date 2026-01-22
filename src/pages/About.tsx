@@ -14,7 +14,7 @@ const About: React.FC = () => {
         className={`relative w-full h-[50vh] md:h-[60vh] bg-gray-100 flex items-center justify-center overflow-hidden mb-24 group ${SHOWREEL_ID ? 'cursor-pointer' : 'cursor-default'}`}
         onClick={() => SHOWREEL_ID && setShowreelOpen(true)}
       >
-        <img src="./public/media/others/showreel cover .jpg" alt="Showreel Cover" className="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-1000" />
+        <img src="./public/media/others/showreel_cover.jpg" alt="Showreel Cover" className="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-1000" />
         <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-500"></div>
         <div className="relative z-10 flex flex-col items-center">
           <h2 className="font-serif text-4xl md:text-6xl text-white tracking-wide drop-shadow-lg mb-6">SHOW REEL</h2>
