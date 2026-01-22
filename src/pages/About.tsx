@@ -115,26 +115,37 @@ const About: React.FC = () => {
          </div>
       </section>
 
-      {/* Clients Section */}
-      <section className="max-w-screen-xl mx-auto px-4 mb-24">
-        <div className="text-center mb-12">
-          <h3 className="font-sans text-xs tracking-[0.2em] uppercase text-gray-400">Collaborated with</h3>
-        </div>
-        
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {CLIENT_LIST.map((client, idx) => (
-             <div 
-                key={idx} 
-                className="group flex items-center justify-center h-28 border border-gray-100 hover:border-gold hover:bg-white transition-all duration-500 p-4"
-              >
-                <span className="font-serif text-lg text-gray-400 group-hover:text-dark transition-colors text-center">
-                  {client.name}
-                </span>
-             </div>
-          ))}
-        </div>
-      </section>
-
+    {/* Clients Section */}
+    <section className="max-w-screen-xl mx-auto px-4 mb-24">
+      <div className="text-center mb-12">
+        <h3 className="font-sans text-xs tracking-[0.2em] uppercase text-gray-400">
+          Collaborated with
+        </h3>
+      </div>
+      
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {CLIENT_LIST.map((client, idx) => {
+          // Logic check: only render an <a> tag if a valid link exists
+          const isLink = client.link && client.link !== '#';
+          const Component = isLink ? 'a' : 'div';
+          
+          return (
+            <Component 
+              key={idx} 
+              href={isLink ? client.link : undefined}
+              target={isLink ? "_blank" : undefined}
+              rel={isLink ? "noopener noreferrer" : undefined}
+              className={`group flex items-center justify-center h-28 border border-gray-100 p-4 transition-all duration-500 
+                ${isLink ? 'hover:border-gold hover:bg-white cursor-pointer' : 'cursor-default'}`}
+            >
+              <span className="font-serif text-lg text-gray-400 group-hover:text-dark transition-colors text-center">
+                {client.name}
+              </span>
+            </Component>
+          );
+        })}
+      </div>
+    </section>
       {/* Testimonials Section */}
       <section className="bg-black text-white py-24">
         <div className="max-w-7xl mx-auto px-4">
