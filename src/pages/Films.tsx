@@ -20,7 +20,7 @@ export default function Films() {
     <div className="pt-24 pb-20 min-h-screen">
       
       {/* Showreel Section */}
-      <section 
+      {/* <section 
         className={`relative w-full h-[60vh] bg-gray-100 flex items-center justify-center overflow-hidden mb-20 group animate-slide-up ${SHOWREEL_ID ? 'cursor-pointer' : 'cursor-default'}`}
         onClick={() => SHOWREEL_ID && setShowreelOpen(true)}
       >
@@ -47,7 +47,7 @@ export default function Films() {
              </div>
           )}
         </div>
-      </section>
+      </section> */}
 
       <div className="text-center mb-16 px-4 animate-slide-up delay-200">
         <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-dark mb-4">Selected Works</h1>
