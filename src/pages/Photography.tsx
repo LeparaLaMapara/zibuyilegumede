@@ -1,35 +1,65 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import MasonryGrid from '../components/MasonryGrid';
 import VideoThumbnail from '../components/VideoThumbnail';
-import { PHOTOS } from '../constants';
+import { Link, useSearchParams } from 'react-router-dom';
+
+
+// Define the shape of our Cloudinary photo data
+interface CloudinaryPhoto {
+  id: number;
+  title: string;
+  category: string;
+  image: string;
+  externalLink?: string;
+}
 
 const Photography: React.FC = () => {
+  const [photos, setPhotos] = useState<CloudinaryPhoto[]>([]);
+  const [loading, setLoading] = useState(true);
   const [activeCategory, setActiveCategory] = useState('All');
 
-  // Extract unique categories from photos dynamically
-  const categories = useMemo(() => {
-    const allCategories = PHOTOS.map(photo => photo.category);
-    // Remove duplicates and add 'All' at the beginning
-    return ['All', ...Array.from(new Set(allCategories))];
+  // Fetch photos from the Vercel Serverless Function
+  useEffect(() => {
+    const loadPhotos = async () => {
+      try {
+        const response = await fetch('/api/photos');
+        if (!response.ok) throw new Error('Failed to fetch gallery');
+        const data = await response.json();
+        setPhotos(data);
+      } catch (error) {
+        console.error("Gallery Error:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadPhotos();
   }, []);
+
+  // Extract unique categories from the fetched photos
+  const categories = useMemo(() => {
+    if (photos.length === 0) return ['All'];
+    const allCategories = photos.map(photo => photo.category);
+    return ['All', ...Array.from(new Set(allCategories))];
+  }, [photos]);
 
   // Filter photos based on active category
   const filteredPhotos = useMemo(() => {
-    if (activeCategory === 'All') return PHOTOS;
-    return PHOTOS.filter(photo => photo.category === activeCategory);
-  }, [activeCategory]);
+    if (activeCategory === 'All') return photos;
+    return photos.filter(photo => photo.category === activeCategory);
+  }, [activeCategory, photos]);
 
   return (
     <div className="pt-32 pb-20 min-h-screen">
-       <div className="text-center mb-10 px-4">
+      <div className="text-center mb-10 px-4 animate-slide-up">
         <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-dark mb-4">Stills</h1>
         <p className="font-sans text-sm text-gray-500 tracking-widest uppercase">Photography & Behind The Scenes</p>
       </div>
 
       {/* Filter Menu */}
-      <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 mb-16 px-4">
+      <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 mb-16 px-4 animate-slide-up delay-200">
         {categories.map((category) => (
-          <button
+          <Link
             key={category}
             onClick={() => setActiveCategory(category)}
             className={`relative pb-1 font-sans text-xs tracking-[0.2em] uppercase transition-colors duration-300 ${
@@ -40,27 +70,35 @@ const Photography: React.FC = () => {
           >
             {category}
             {/* Animated underline for active state */}
+
             <span 
-              className={`absolute bottom-0 left-0 w-full h-[1px] bg-gold transform transition-transform duration-300 origin-center ${
+              className={`absolute bottom-0 left-0 w-full h-[1px] bg-gold transform transition-transform duration-300 origin-center  ${
                 activeCategory === category ? 'scale-x-100' : 'scale-x-0'
               }`}
             ></span>
-          </button>
+          </Link>
         ))}
       </div>
 
-      <MasonryGrid>
-        {filteredPhotos.map((photo) => (
-          <VideoThumbnail 
-            key={photo.id}
-            image={photo.image}
-            // title={photo.title}
-            category={photo.category}
-            isPhoto={true}
-            externalLink={photo.externalLink}
-          />
-        ))}
-      </MasonryGrid>
+      {/* Loading State or Grid */}
+      {loading ? (
+        <div className="flex flex-col items-center justify-center py-20">
+           <div className="w-8 h-8 border-t-2 border-gold border-solid rounded-full animate-spin mb-4"></div>
+           <p className="font-sans text-xs tracking-widest text-gray-400 uppercase">Fetching Assets...</p>
+        </div>
+      ) : (
+        <MasonryGrid>
+          {filteredPhotos.map((photo) => (
+            <VideoThumbnail 
+              key={photo.id}
+              image={photo.image}
+              category={photo.category}
+              isPhoto={true}
+              externalLink={photo.externalLink}
+            />
+          ))}
+        </MasonryGrid>
+      )}
     </div>
   );
 };

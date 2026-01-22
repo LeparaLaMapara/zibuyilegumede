@@ -39,11 +39,11 @@ const VideoThumbnail: React.FC<VideoThumbnailProps> = ({
   };
 
   // Determine which icon to show for photos with links
-  const LinkIcon = externalLink && externalLink.includes('instagram.com') ? Instagram : ExternalLink;
+  const LinkIcon = externalLink?.includes('instagram.com') ? Instagram : ExternalLink;
 
   if (isPlaying && youtubeId) {
     return (
-      <div className="w-full mb-6 bg-black relative group animate-in fade-in duration-300">
+      <div className="w-full mb-6 bg-black relative group animate-in fade-in duration-500 break-inside-avoid">
          <div className="relative w-full aspect-video">
             <iframe 
                 src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1&modestbranding=1&rel=0&showinfo=0&controls=1`}
@@ -66,38 +66,37 @@ const VideoThumbnail: React.FC<VideoThumbnailProps> = ({
 
   return (
     <div 
-      className="group relative w-full overflow-hidden mb-6 cursor-pointer"
+      className="group relative w-full overflow-hidden mb-6 cursor-pointer break-inside-avoid animate-slide-up"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={handleClick}
     >
       {/* Black Border Container */}
-      <div className="border border-black bg-black">
-        <img 
-          src={image} 
-          alt={title} 
-          className={`w-full h-auto object-cover transition-all duration-700 ease-out ${isHovered ? 'opacity-60 scale-105' : 'opacity-100 scale-100'}`}
-          loading="lazy"
+      <div className="border border-black bg-black relative overflow-hidden">
+        <img
+          src={image}
+          alt={title}
+          className={`w-full h-auto object-cover transition-all duration-1000 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${isHovered ? 'opacity-60 scale-105' : 'opacity-100 scale-100'}`}
         />
         
         {/* Overlay */}
-        <div className={`absolute inset-0 flex flex-col items-center justify-center transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`}>
+        <div className={`absolute inset-0 flex flex-col items-center justify-center transition-opacity duration-500 ${isHovered ? 'opacity-100' : 'opacity-0'}`}>
           {!isPhoto && (
-            <div className="mb-4 transform transition-transform duration-300 group-hover:scale-110">
+            <div className="mb-4 transform transition-transform duration-500 group-hover:scale-110">
               <Play fill="white" stroke="white" size={48} className="drop-shadow-lg" />
             </div>
           )}
           
           {isPhoto && externalLink && (
-            <div className="mb-4 transform transition-transform duration-300 group-hover:scale-110">
+            <div className="mb-4 transform transition-transform duration-500 group-hover:scale-110">
               <LinkIcon className="text-white drop-shadow-lg w-8 h-8 md:w-10 md:h-10" />
             </div>
           )}
 
-          <h3 className="text-white font-serif text-2xl tracking-wide uppercase text-center px-4 drop-shadow-md translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+          <h3 className="text-white font-serif text-2xl tracking-wide uppercase text-center px-4 drop-shadow-md translate-y-8 group-hover:translate-y-0 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]">
             {title}
           </h3>
-          <p className="text-gold font-sans text-xs tracking-widest uppercase mt-2 translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-75">
+          <p className="text-gold font-sans text-xs tracking-widest uppercase mt-2 translate-y-8 group-hover:translate-y-0 transition-transform duration-700 delay-75 ease-[cubic-bezier(0.16,1,0.3,1)]">
             {category}
           </p>
         </div>

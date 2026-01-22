@@ -29,3 +29,17 @@ dist-ssr
 # Local Photography Assets (High-res originals)
 local_photography_assets/
 
+
+
+# 2. Local Scripts
+upload.log
+
+# 3. Standard Environment & Config
+.env
+.env.local
+.git
+node_modules/
+
+# 4. OS Files
+.DS_Store
+Thumbs.db
