@@ -4,13 +4,7 @@ import VideoThumbnail from '../components/VideoThumbnail';
 import { Link, useSearchParams } from 'react-router-dom';
 import { getOptimizedUrl, getPlaceholderUrl } from '../utils/cloudinary';
 
-// Inside your .map() function:
-<VideoThumbnail 
-  key={photo.id}
-  image={getOptimizedUrl(photo.image)} 
-  placeholder={getPlaceholderUrl(photo.image)}
-  category={photo.category}
-/>
+
 
 // Define the shape of our Cloudinary photo data
 interface CloudinaryPhoto {
@@ -100,6 +94,7 @@ const Photography: React.FC = () => {
             <VideoThumbnail 
               key={photo.id}
               image={getOptimizedUrl(photo.image)}
+              placeholder={getPlaceholderUrl(photo.image)}
               category={photo.category}
               isPhoto={true}
               externalLink={photo.externalLink}
