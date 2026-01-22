@@ -3,6 +3,7 @@ import { Play, X, Instagram, ExternalLink } from 'lucide-react';
 
 interface VideoThumbnailProps {
   image: string;
+  placeholder: string; // Added for the blur-up effect
   title: string;
   category: string;
   isPhoto?: boolean;
@@ -13,6 +14,7 @@ interface VideoThumbnailProps {
 
 const VideoThumbnail: React.FC<VideoThumbnailProps> = ({ 
   image, 
+  placeholder,
   title, 
   category, 
   isPhoto = false, 
@@ -22,6 +24,7 @@ const VideoThumbnail: React.FC<VideoThumbnailProps> = ({
 }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false); // Track when high-res image is ready
 
   const handleClick = () => {
     if (youtubeId) {
@@ -38,7 +41,6 @@ const VideoThumbnail: React.FC<VideoThumbnailProps> = ({
     setIsPlaying(false);
   };
 
-  // Determine which icon to show for photos with links
   const LinkIcon = externalLink?.includes('instagram.com') ? Instagram : ExternalLink;
 
   if (isPlaying && youtubeId) {
@@ -71,15 +73,29 @@ const VideoThumbnail: React.FC<VideoThumbnailProps> = ({
       onMouseLeave={() => setIsHovered(false)}
       onClick={handleClick}
     >
-      {/* Black Border Container */}
-      <div className="border border-black bg-black relative overflow-hidden">
+      <div className="border border-black bg-black relative overflow-hidden aspect-auto">
+        
+        {/* 1. BLUR PLACEHOLDER: Visible immediately, fades out when isLoaded is true */}
+        <img
+          src={placeholder}
+          alt=""
+          aria-hidden="true"
+          className={`w-full h-full object-cover transition-opacity duration-700 ${
+            isLoaded ? 'opacity-0' : 'opacity-100'
+          }`}
+        />
+
+        {/* 2. HIGH-RES IMAGE: Fades in over the placeholder */}
         <img
           src={image}
           alt={title}
-          className={`w-full h-auto object-cover transition-all duration-1000 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${isHovered ? 'opacity-60 scale-105' : 'opacity-100 scale-100'}`}
+          onLoad={() => setIsLoaded(true)}
+          className={`absolute inset-0 w-full h-auto object-cover transition-all duration-1000 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${
+            isLoaded ? 'opacity-100' : 'opacity-0'
+          } ${isHovered ? 'opacity-60 scale-105' : ''}`}
         />
         
-        {/* Overlay */}
+        {/* Overlay Content (Remains unchanged) */}
         <div className={`absolute inset-0 flex flex-col items-center justify-center transition-opacity duration-500 ${isHovered ? 'opacity-100' : 'opacity-0'}`}>
           {!isPhoto && (
             <div className="mb-4 transform transition-transform duration-500 group-hover:scale-110">
