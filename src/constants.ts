@@ -3,7 +3,7 @@ import { NavItem, Project, Testimonial } from './types';
 // Use professional cinematography terminology
 export const NAV_ITEMS: NavItem[] = [
   { label: 'Films', path: '/films' },
-  { label: 'Unit Photography', path: '/photography' }, // Professional update from "Photography"
+  { label: 'Photography', path: '/photography' }, // Professional update from "Photography"
   { label: 'About', path: '/about' },
   { label: 'Contact', path: '/contact' },
 ];
