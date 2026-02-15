@@ -4,7 +4,7 @@ import { NavItem, Project, Testimonial } from './types';
 export const NAV_ITEMS: NavItem[] = [
   { label: 'Films', path: '/films' },
   { label: 'Photography', path: '/photography' }, // Professional update from "Photography"
-  { label: 'About', path: '/about' },
+  // { label: 'About', path: '/about' },
   { label: 'Contact', path: '/contact' },
 ];
 
