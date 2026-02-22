@@ -62,28 +62,38 @@ const About: React.FC = () => {
         </div>
       </section>
 
-      {/* Biography Section */}
-      <section className="max-w-screen-xl mx-auto px-4 md:px-8 lg:px-12 mb-24">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24">
-          <div>
-            <h2 className="font-serif text-3xl mb-6 text-dark">Biography</h2>
-            <p className="font-sans text-sm text-gray-500 leading-7 tracking-wide text-justify">
-              <strong>Zibuyile Gumede</strong> is a South African Cinematographer and the founder of{' '}
-              <a href={SOCIAL_LINKS.instagram} target="_blank" rel="noopener noreferrer" className="font-bold text-dark hover:text-gold transition-colors">
-                ABANTU PICTURES
-              </a>. Her work is defined by a balance of emotive lighting and technical precision, spanning narrative features, high-end commercials, and music videos.
-            </p>
-          </div>
-          <div className="font-sans text-sm text-gray-500 leading-7 tracking-wide text-justify">
-            <p className="mb-4">
-              Specializing in both film and digital formats, Zibuyile is an advocate for emerging technologies, including Virtual Production and AI. She believes that cinematography is the bridge between traditional craft and modern meaning.
-            </p>
-            <p>
-              Through ABANTU PICTURES, she offers a collaborative approach that respects the integrity of the story while pushing creative boundaries.
-            </p>
-          </div>
-        </div>
-      </section>
+   {/* Biography Section */}
+<section className="max-w-screen-xl mx-auto px-4 md:px-8 lg:px-12 mb-24">
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24">
+    <div>
+      <h2 className="font-serif text-3xl mb-6 text-dark">Biography</h2>
+      <p className="font-sans text-sm text-gray-500 leading-7 tracking-wide text-justify">
+        I am a South African cinematographer building my voice through{" "}
+        <strong>ABANTU PICTURES</strong>. My images are guided by feeling first — 
+        technique follows in service of it. I’m not interested in making things 
+        simply look beautiful; I want them to be felt.
+      </p>
+    </div>
+
+    <div className="font-sans text-sm text-gray-500 leading-7 tracking-wide text-justify">
+      <p className="mb-4">
+        I move between narrative film, commercials, and music videos because 
+        each form reveals something new about people, rhythm, and memory. 
+        Working across both film and digital formats, I remain open to emerging 
+        tools such as Virtual Production and AI — not to replace craft, but to 
+        expand what stories can become.
+      </p>
+
+      <p>
+        For me, cinematography exists between heritage and the present moment. 
+        I carry the discipline of traditional image-making while searching for 
+        new meaning within it. Through ABANTU PICTURES, I collaborate rather 
+        than dictate. I listen to the story, honor its integrity, and then 
+        carefully push it further than it expected to go.
+      </p>
+    </div>
+  </div>
+</section>
 
       {/* Feature Movie Section: One Last Try */}
       <section className="bg-white py-20 mb-24 border-y border-gray-100">
