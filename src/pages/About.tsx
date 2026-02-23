@@ -99,6 +99,7 @@ const About: React.FC = () => {
       <section className="bg-white py-20 mb-24 border-y border-gray-100">
          <div className="max-w-6xl mx-auto px-4">
             <h3 className="text-center font-serif text-3xl mb-12">"ONE LAST TRY"</h3>
+           <p className="text-sm tracking-[0.2em] text-gray-400 uppercase">Coming Soon</p>
             <div className="grid md:grid-cols-12 gap-8 items-start">
                <div className="md:col-span-3">
                   <div className="aspect-[2/3] bg-gray-200 overflow-hidden">
