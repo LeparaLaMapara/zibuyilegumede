@@ -66,8 +66,8 @@ const About: React.FC = () => {
 <section className="max-w-screen-xl mx-auto px-4 md:px-8 lg:px-12 mb-24">
   <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24">
     <div>
-      <h2 className="font-serif text-3xl mb-6 text-dark">Biography</h2>
-      <p className="font-sans text-sm text-gray-500 leading-7 tracking-wide text-justify">
+      <h2 className="font-serif text-3xl mb-6 text-dark dark:text-offwhite">Biography</h2>
+      <p className="font-sans text-sm text-gray-500 dark:text-gray-400 leading-7 tracking-wide text-justify">
         I am a South African cinematographer building my voice through{" "}
         <strong>ABANTU PICTURES</strong>. My images are guided by feeling first — 
         technique follows in service of it. I’m not interested in making things 
@@ -75,7 +75,7 @@ const About: React.FC = () => {
       </p>
     </div>
 
-    <div className="font-sans text-sm text-gray-500 leading-7 tracking-wide text-justify">
+    <div className="font-sans text-sm text-gray-500 dark:text-gray-400 leading-7 tracking-wide text-justify">
       <p className="mb-4">
         I move between narrative film, commercials, and music videos because 
         each form reveals something new about people, rhythm, and memory. 
@@ -96,7 +96,7 @@ const About: React.FC = () => {
 </section>
 
       {/* Feature Movie Section: One Last Try */}
-      <section className="bg-white py-20 mb-24 border-y border-gray-100">
+      <section className="bg-white dark:bg-charcoal py-20 mb-24 border-y border-gray-100 dark:border-white/10">
          <div className="max-w-6xl mx-auto px-4">
             <h3 className="text-center font-serif text-3xl mb-12">"ONE LAST TRY"</h3>
            <p className="text-sm tracking-[0.2em] text-gray-400 uppercase">Coming Soon</p>
@@ -118,7 +118,7 @@ const About: React.FC = () => {
                      <img src="/media/others/best_movie_4.png" loading="lazy" className="w-full h-48 object-cover" alt="Still 2" />
                   </div>
                   <h4 className="font-bold text-sm tracking-widest mb-2">SYNOPSIS</h4>
-                  <p className="text-sm text-gray-600 mb-6 leading-relaxed">
+                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
                     Under a Johannesburg bridge, hope is measured in lipstick, mirrors, and one last chance. One Last Try is an intimate drama where two homeless women confront the possibility of change.
                   </p>
                </div>
@@ -146,10 +146,10 @@ const About: React.FC = () => {
               href={isLink ? client.link : undefined}
               target={isLink ? "_blank" : undefined}
               rel={isLink ? "noopener noreferrer" : undefined}
-              className={`group flex items-center justify-center h-28 border border-gray-100 p-4 transition-all duration-500 
-                ${isLink ? 'hover:border-gold hover:bg-white cursor-pointer' : 'cursor-default'}`}
+              className={`group flex items-center justify-center h-28 border border-gray-100 dark:border-white/10 p-4 transition-all duration-500
+                ${isLink ? 'hover:border-gold hover:bg-white dark:hover:bg-white/5 cursor-pointer' : 'cursor-default'}`}
             >
-              <span className="font-serif text-lg text-gray-400 group-hover:text-dark transition-colors text-center">
+              <span className="font-serif text-lg text-gray-400 group-hover:text-dark dark:group-hover:text-offwhite transition-colors text-center">
                 {client.name}
               </span>
             </Component>

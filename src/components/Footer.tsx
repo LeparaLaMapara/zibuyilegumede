@@ -4,7 +4,7 @@ import { SOCIAL_LINKS} from '../constants';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-white border-t border-gray-100 py-12 mt-auto">
+    <footer className="bg-white dark:bg-night border-t border-gray-100 dark:border-white/10 py-12 mt-auto">
       <div className="max-w-7xl mx-auto px-4 text-center">
         <p className="text-gray-400 text-xs tracking-widest font-sans mb-4">
           © ZIBUYILE GUMEDE {new Date().getFullYear()}. ALL RIGHTS RESERVED.

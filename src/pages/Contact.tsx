@@ -8,10 +8,10 @@ const Contact: React.FC = () => {
         
         {/* Contact Info Header */}
         <div className="text-center mb-20">
-          <h2 className="font-serif text-4xl md:text-5xl mb-8 text-dark">Contact.</h2>
+          <h2 className="font-serif text-4xl md:text-5xl mb-8 text-dark dark:text-offwhite">Contact.</h2>
 
-          
-          <div className="space-y-3 font-sans text-sm md:text-base tracking-wide text-dark">
+
+          <div className="space-y-3 font-sans text-sm md:text-base tracking-wide text-dark dark:text-offwhite">
             <a href={`mailto:${SOCIAL_LINKS.email}`} className="block hover:text-gold transition-colors">
               {SOCIAL_LINKS.email}
             </a>
@@ -32,11 +32,11 @@ const Contact: React.FC = () => {
         <div className="w-12 h-px bg-gold mx-auto mb-16"></div>
 
           {/* Previous Clients Grid */}
-      <div className="max-w-4xl mx-auto px-4 mb-24 text-center border-t border-gray-100 pt-16">
+      <div className="max-w-4xl mx-auto px-4 mb-24 text-center border-t border-gray-100 dark:border-white/10 pt-16">
         <h3 className="font-sans text-xs tracking-[0.25em] uppercase text-gray-400 mb-8 font-semibold">
           Previous Clients Include:
         </h3>
-        <div className="flex flex-wrap justify-center items-center gap-x-3 gap-y-2 font-serif text-lg text-gray-600 leading-relaxed">
+        <div className="flex flex-wrap justify-center items-center gap-x-3 gap-y-2 font-serif text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
           {CLIENT_LIST.map((client, index) => (
             <React.Fragment key={index}>
               <span className="hover:text-gold transition-colors cursor-default">{client.name}</span>
@@ -49,7 +49,7 @@ const Contact: React.FC = () => {
         {/* Kit Section */}
         <div className="text-center mb-24 max-w-2xl mx-auto">
            <h3 className="text-xs font-bold tracking-[0.2em] mb-4 uppercase text-gray-400">Kit:</h3>
-           <p className="text-sm text-gray-600 leading-relaxed">
+           <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
              I have a select amount of personal equipment for smaller projects. This includes a Sony Apha And Canon 700D camera package.
            </p>
         </div>

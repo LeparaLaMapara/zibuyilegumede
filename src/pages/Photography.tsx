@@ -54,8 +54,8 @@ const Photography: React.FC = () => {
   return (
     <div className="pt-32 pb-20 min-h-screen">
       <div className="text-center mb-10 px-4 animate-slide-up">
-        <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-dark mb-4">Stills</h1>
-        <p className="font-sans text-sm text-gray-500 tracking-widest uppercase">Photography & Behind The Scenes</p>
+        <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-dark dark:text-offwhite mb-4">Stills</h1>
+        <p className="font-sans text-sm text-gray-500 dark:text-gray-400 tracking-widest uppercase">Photography & Behind The Scenes</p>
       </div>
 
       {/* Filter Menu */}
@@ -65,8 +65,8 @@ const Photography: React.FC = () => {
             key={category}
             onClick={() => setActiveCategory(category)}
             className={`relative pb-1 font-sans text-xs tracking-[0.2em] uppercase transition-colors duration-300 ${
-              activeCategory === category 
-                ? 'text-dark' 
+              activeCategory === category
+                ? 'text-dark dark:text-offwhite'
                 : 'text-gray-400 hover:text-gold'
             }`}
           >

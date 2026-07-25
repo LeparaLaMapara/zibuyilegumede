@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { NavLink, Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, Instagram, Linkedin, Mail, Film } from 'lucide-react';
 import { NAV_ITEMS, SOCIAL_LINKS, BRAND } from '../constants';
+import ThemeToggle from './ThemeToggle';
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -44,7 +45,7 @@ const Header: React.FC = () => {
   return (
     <header 
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white/95 backdrop-blur-sm shadow-sm py-3' : 'bg-white py-4 md:py-6'
+        isScrolled ? 'bg-white/95 dark:bg-night/95 backdrop-blur-sm shadow-sm dark:shadow-black/40 py-3' : 'bg-white dark:bg-night py-4 md:py-6'
       }`}
     >
       <div className="max-w-screen-2xl mx-auto px-4 md:px-8 lg:px-12 flex justify-between items-center h-12 md:h-auto">
@@ -54,7 +55,7 @@ const Header: React.FC = () => {
           <a 
             href="/" 
             onClick={handleLogoClick}
-            className="font-serif text-lg sm:text-2xl md:text-3xl tracking-tight text-dark font-semibold cursor-pointer hover:text-gold-hover transition-colors whitespace-nowrap"
+            className="font-serif text-lg sm:text-2xl md:text-3xl tracking-tight text-dark dark:text-offwhite font-semibold cursor-pointer hover:text-gold transition-colors whitespace-nowrap"
           >
             {BRAND.name}
           </a>
@@ -70,7 +71,7 @@ const Header: React.FC = () => {
               key={item.path}
               to={item.path}
               className={({ isActive }) => `font-sans text-xs lg:text-sm tracking-widest uppercase pb-1 border-b-2 transition-colors duration-300 ${
-                isActive ? 'border-gold text-black' : 'border-transparent text-gray-500 hover:text-black hover:border-gold'
+                isActive ? 'border-gold text-black dark:text-white' : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white hover:border-gold'
               }`}
             >
               {item.label}
@@ -94,27 +95,31 @@ const Header: React.FC = () => {
                 <Mail size={18} />
             </a>
           </div>
-          <a 
-            href="/cv.pdf" 
+          <a
+            href="/cv.pdf"
             download
             className="border border-gold text-gold font-sans text-[10px] lg:text-xs tracking-widest uppercase px-4 py-2 hover:bg-gold hover:text-white transition-all duration-300"
           >
             Download CV
           </a>
+          <ThemeToggle />
         </div>
 
-        {/* Mobile Menu Toggle */}
-        <button 
-          className="md:hidden text-dark focus:outline-none z-50 p-2 -mr-2"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label={mobileMenuOpen ? "Close Menu" : "Open Menu"}
-        >
-          {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
+        {/* Mobile actions: theme toggle + menu */}
+        <div className="md:hidden flex items-center gap-1 z-50">
+          <ThemeToggle className="p-2" />
+          <button
+            className="text-dark dark:text-offwhite focus:outline-none p-2 -mr-2"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label={mobileMenuOpen ? "Close Menu" : "Open Menu"}
+          >
+            {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu Overlay */}
-      <div className={`fixed inset-0 bg-white h-screen w-screen z-40 flex flex-col pt-32 items-center transition-transform duration-500 ease-in-out md:hidden ${
+      <div className={`fixed inset-0 bg-white dark:bg-night h-screen w-screen z-40 flex flex-col pt-32 items-center transition-transform duration-500 ease-in-out md:hidden ${
       mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
       }`}>
         <div className="flex flex-col items-center space-y-8 w-full px-8">
@@ -122,13 +127,13 @@ const Header: React.FC = () => {
             <NavLink
               key={item.path}
               to={item.path}
-              className={({ isActive }) => `font-serif text-2xl tracking-wide ${isActive ? 'text-gold' : 'text-dark'}`}
+              className={({ isActive }) => `font-serif text-2xl tracking-wide ${isActive ? 'text-gold' : 'text-dark dark:text-offwhite'}`}
             >
               {item.label}
             </NavLink>
           ))}
           
-          <div className="w-16 h-px bg-gray-200 my-6"></div>
+          <div className="w-16 h-px bg-gray-200 dark:bg-white/15 my-6"></div>
 
           <div className="flex space-x-8">
             <a href={SOCIAL_LINKS.instagram} className="text-gray-400 hover:text-gold"><Instagram size={24} /></a>

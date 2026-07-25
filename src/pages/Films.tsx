@@ -32,8 +32,8 @@ export default function Films() {
     <div className="pt-24 pb-20 min-h-screen">
       
       <div className="text-center mb-16 px-4 animate-slide-up delay-200">
-        <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-dark mb-4">Selected Works</h1>
-        <p className="font-sans text-sm text-gray-500 tracking-widest uppercase">Narrative & Commercial Cinematography</p>
+        <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-dark dark:text-offwhite mb-4">Selected Works</h1>
+        <p className="font-sans text-sm text-gray-500 dark:text-gray-400 tracking-widest uppercase">Narrative & Commercial Cinematography</p>
       </div>
 
       <div className="animate-slide-up delay-300">

@@ -13,14 +13,31 @@
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- No-flash theme init: set the class before first paint -->
+    <script>
+      (function () {
+        try {
+          var override = new URLSearchParams(window.location.search).get('theme');
+          var stored = localStorage.getItem('theme');
+          var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var dark = override ? override === 'dark'
+            : (stored === 'dark' || (!stored && prefersDark));
+          if (dark) document.documentElement.classList.add('dark');
+        } catch (e) {}
+      })();
+    </script>
+
     <script>
       tailwind.config = {
+        darkMode: 'class',
         theme: {
           extend: {
             colors: {
               gold: '#d4af37',
               offwhite: '#f9f9f9',
               dark: '#111111',
+              night: '#0d0d0d',
+              charcoal: '#1a1a1a',
             },
             fontFamily: {
               sans: ['Inter', 'sans-serif'],
@@ -73,6 +90,13 @@
       ::-webkit-scrollbar-thumb:hover {
         background: #b5952f;
       }
+      /* Dark mode scrollbar + base surface */
+      .dark ::-webkit-scrollbar-track {
+        background: #1a1a1a;
+      }
+      .dark body {
+        background-color: #0d0d0d;
+      }
     </style>
     
     <script type="importmap">
@@ -90,7 +114,7 @@
 }
 </script>
   </head>
-  <body class="bg-offwhite text-dark antialiased">
+  <body class="bg-offwhite text-dark dark:bg-night dark:text-offwhite antialiased transition-colors duration-300">
     <div id="root"></div>
     <script type="module" src="/src/index.tsx"></script>
   </body>

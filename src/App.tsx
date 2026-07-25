@@ -11,7 +11,7 @@ const About = lazy(() => import('./pages/About'));
 const Contact = lazy(() => import('./pages/Contact'));
 
 const LoadingFallback = () => (
-  <div className="flex items-center justify-center min-h-screen bg-white">
+  <div className="flex items-center justify-center min-h-screen bg-white dark:bg-night">
     <div className="w-12 h-12 border-2 border-gray-200 border-t-gold rounded-full animate-spin"></div>
   </div>
 );
@@ -19,7 +19,7 @@ const LoadingFallback = () => (
 const App: React.FC = () => {
   return (
     <HashRouter>
-      <div className="flex flex-col min-h-screen font-sans bg-white text-dark selection:bg-gold selection:text-white">
+      <div className="flex flex-col min-h-screen font-sans bg-white text-dark dark:bg-night dark:text-offwhite selection:bg-gold selection:text-white transition-colors duration-300">
         <Header />
         <main className="flex-grow">
           <Suspense fallback={<LoadingFallback />}>
